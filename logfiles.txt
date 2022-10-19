@@ -1,0 +1,359 @@
+1.lqms_mgc.py
+1.1. log files
+	(1)Default files
+		+File name 
+			MDA1_MGC_DEF.csv , MDA2_MGC_DEF.csv , MDB1_MGC_DEF.csv , MDB2_MGC_DEF.csv , 
+			MDC1_MGC_DEF.csv , MDC2_MGC_DEF.csv , MDE1_MGC_DEF.csv , MDE2_MGC_DEF.csv , 
+			MDF1_MGC_DEF.csv , MDF2_MGC_DEF.csv
+		+全MODEMに対して、基本設定ファイルを持たせており、この設定ファイルとの照合により設定値の正当性を確認する。
+		 デフォルトファイルの書式は改行無しのcsvファイルで以下の26項目の設定値が列挙されている。
+				0   TFQ / Tx Frequency
+				1   TFT / Tx FEC Type
+				2   TMD / Tx Modulation Type
+				3   TCR / Tx FEC Rate
+				4   TDR / Tx Data Rate
+				5   TSI / Tx Spectrum Inversion
+				6   TSC / Tx Scrambler State
+				7   TPL / Tx Power Level
+				8   TDI / Tx Data Invert
+				9   TXO / Tx Carrier State
+				10  TXA / Tx Alpha
+				11  TCI / Tx Clock Invert
+				12  RFQ / Rx Frequency
+				13  RFT / Rx FEC Type
+				14  RMD / Rx Demodulation Type
+				15  RCR / Rx FEC Rate
+				16  RDR / Rx Data Rate
+				17  RSI / Rx Spectrum Inversion
+				18  RDS / Rx Descrambler State
+				19  RDI / Rx Data Invert
+				20  RSW / Rx Sweep Width
+				21  EBA / Eb/N0 ALM Point
+				22  RXA / Rx Alpha
+				23  RCI / Rx Clock Invert
+				24  TSR / Tx Symbole Rate
+				25  RSR / Rx Symbole Rate
+
+	(2)System logs
+		+File name
+			/mnt/ssd/facl/sys_YYMMDD.log
+		+前述の比較対象の設定に関して全て記録する。
+			-動作ログ（lqms_mgc.py)が起動したときの記録
+				日付、時刻、MD番号、'MGC'、'Query MGC'
+			-記録ログ：MGCコマンドの結果問題がなかった時の記録
+				日付、時刻、MD番号、'MGC'、'It has all settings correct'
+
+	(3)Error logs
+		+File name
+			/mnt/ssd/error/err_YYMMDD.log
+		+前述の比較対象項目において、エラーがあったとき、当該エラーの項目に関してエラーログファイル内にその設定値を記録する。
+			日付、時刻、MD番号、設定項目、取得設定値、正規設定値
+
+	(4)MODEM個別ログ
+		+各MODEMの個別ログ
+			/mnt/ssd/log/mda1/MDA1_YYMMDD.log , /mnt/ssd/log/mda2/MDA2_YYMMDD.log , /mnt/ssd/log/mdb1/MDB1_YYMMDD.log , 
+			/mnt/ssd/log/mdb2/MDB2_YYMMDD.log , /mnt/ssd/log/mdc1/MDC1_YYMMDD.log , /mnt/ssd/log/mdc2/MDC2_YYMMDD.log , 
+			/mnt/ssd/log/mde1/MDE1_YYMMDD.log , /mnt/ssd/log/mde2/MDE2_YYMMDD.log , /mnt/ssd/log/mdf1/MDF1_YYMMDD.log , 
+			/mnt/ssd/log/mdf2/MDF2_YYMMDD.log
+		+取得した設定項目と正規設定値を記録する。
+			日付,時刻,MD番号,'MGC',設定項目,取得設定値,正規設定値
+		+設定エラーがあったとき
+			日付,時刻,MD番号,'MGC',ブランク,'The MD** has several wrong setup'
+		+設定エラーがなかった時
+			日付,時刻,MD番号,'MGC',ブランク,'The MD** has all settings correct'
+
+2.lqms_flt.py
+2.1.log files
+	(1)System logs
+		+File name
+			/mnt/ssd/facl/sys_YYMMDD.log
+		+前述の比較対象の設定に関して全て記録する。
+			-動作ログ（lqms_mgc.py)が起動したときの記録
+				日付、時刻、MD番号、'FLT'、'Query FLT'
+			-記録ログ：FLTコマンドの結果の記録
+				日付、時刻、MD番号、'FLT'、ユニットステータス、送信ステータス、受信ステータス、ブランク、状態変化フラグ
+
+	(2)Error logs
+		+File name
+			/mnt/ssd/error/err_YYMMDD.log
+			-記録ログ：FLTコマンドの結果の記録
+				日付、時刻、MD番号、'FLT'、ユニットステータス、送信ステータス、受信ステータス、ブランク、状態変化フラグ
+
+	(3)MODEM個別ログ
+		+各MODEMの個別ログ
+			/mnt/ssd/log/mda1/MDA1_YYMMDD.log , /mnt/ssd/log/mda2/MDA2_YYMMDD.log , /mnt/ssd/log/mdb1/MDB1_YYMMDD.log , 
+			/mnt/ssd/log/mdb2/MDB2_YYMMDD.log , /mnt/ssd/log/mdc1/MDC1_YYMMDD.log , /mnt/ssd/log/mdc2/MDC2_YYMMDD.log , 
+			/mnt/ssd/log/mde1/MDE1_YYMMDD.log , /mnt/ssd/log/mde2/MDE2_YYMMDD.log , /mnt/ssd/log/mdf1/MDF1_YYMMDD.log , 
+			/mnt/ssd/log/mdf2/MDF2_YYMMDD.log
+			-記録ログ：FLTコマンドの結果の記録
+				日付、時刻、MD番号、'FLT'、ユニットステータス、送信ステータス、受信ステータス、ブランク、状態変化フラグ
+
+3.lqms_ebn.py
+3.1.log files
+	(1)System logs
+		+File name
+			/mnt/ssd/facl/sys_YYMMDD.log
+		+前述の比較対象の設定に関して全て記録する。
+			-動作ログ（lqms_ebn.py)が起動したときの記録
+				日付、時刻、MD番号、'EBN'、'Query EBN'
+
+	(2)MODEM個別ログ
+		+各MODEMの個別ログ
+			/mnt/ssd/log/mda1/MDA1_YYMMDD.log , /mnt/ssd/log/mda2/MDA2_YYMMDD.log , /mnt/ssd/log/mdb1/MDB1_YYMMDD.log , 
+			/mnt/ssd/log/mdb2/MDB2_YYMMDD.log , /mnt/ssd/log/mdc1/MDC1_YYMMDD.log , /mnt/ssd/log/mdc2/MDC2_YYMMDD.log , 
+			/mnt/ssd/log/mde1/MDE1_YYMMDD.log , /mnt/ssd/log/mde2/MDE2_YYMMDD.log , /mnt/ssd/log/mdf1/MDF1_YYMMDD.log , 
+			/mnt/ssd/log/mdf2/MDF2_YYMMDD.log
+			-記録ログ：EBNコマンドの結果の記録
+				日付、時刻、MD番号、'EBN'、１分間平均値、１分間最低値
+
+4.lqms_rtc.py
+4.1.log files
+	(1)System logs
+		+File name
+			/mnt/ssd/facl/sys_YYMMDD.log
+		+前述の比較対象の設定に関して全て記録する。
+			-動作ログ（lqms_rtc.py)が起動したときの記録
+				日付、時刻、MD番号、'RTC'、'Web Analysis'、'Router Counters'
+
+	(2)MODEM個別ログ （状態変化があったカウントのみを記録）
+		+各MODEMの個別ログ
+			/mnt/ssd/log/mda1/MDA1_YYMMDD.log , /mnt/ssd/log/mda2/MDA2_YYMMDD.log , /mnt/ssd/log/mdb1/MDB1_YYMMDD.log , 
+			/mnt/ssd/log/mdb2/MDB2_YYMMDD.log , /mnt/ssd/log/mdc1/MDC1_YYMMDD.log , /mnt/ssd/log/mdc2/MDC2_YYMMDD.log , 
+			/mnt/ssd/log/mde1/MDE1_YYMMDD.log , /mnt/ssd/log/mde2/MDE2_YYMMDD.log , /mnt/ssd/log/mdf1/MDF1_YYMMDD.log , 
+			/mnt/ssd/log/mdf2/MDF2_YYMMDD.log
+			-記録ログ：Router CounterのＷｅｂ解析結果の記録
+				日付、時刻、MD番号、'RTC'、項目、数値	ルータカウンタ
+				日付、時刻、MD番号、'DRP'、項目、数値	ドロップパケットカウント
+				日付、時刻、MD番号、'FIL'、項目、数値	フィルタパケットカウント
+
+	(3)表示用・データ比較用ファイル
+		+MODEM-A1
+			MDA1_RTC_TMP.csv	:	Router Counters
+			MDA1_DPT_TMP.csv	:	Dropped Packets
+			MDA1_FPC_TMP.csv	:	Filtered Packets
+		+MODEM-A2
+			MDA2_RTC_TMP.csv	:	Router Counters
+			MDA2_DPT_TMP.csv	:	Dropped Packets
+			MDA2_FPC_TMP.csv	:	Filtered Packets
+		+MODEM-B1
+			MDB1_RTC_TMP.csv	:	Router Counters
+			MDB1_DPT_TMP.csv	:	Dropped Packets
+			MDB1_FPC_TMP.csv	:	Filtered Packets
+		+MODEM-B2
+			MDB2_RTC_TMP.csv	:	Router Counters
+			MDB2_DPT_TMP.csv	:	Dropped Packets
+			MDB2_FPC_TMP.csv	:	Filtered Packets
+		+MODEM-C1
+			MDC1_RTC_TMP.csv	:	Router Counters
+			MDC1_DPT_TMP.csv	:	Dropped Packets
+			MDC1_FPC_TMP.csv	:	Filtered Packets
+		+MODEM-C2
+			MDC2_RTC_TMP.csv	:	Router Counters
+			MDC2_DPT_TMP.csv	:	Dropped Packets
+			MDC2_FPC_TMP.csv	:	Filtered Packets
+		+MODEM-E1
+			MDE1_RTC_TMP.csv	:	Router Counters
+			MDE1_DPT_TMP.csv	:	Dropped Packets
+			MDE1_FPC_TMP.csv	:	Filtered Packets
+		+MODEM-E2
+			MDE2_RTC_TMP.csv	:	Router Counters
+			MDE2_DPT_TMP.csv	:	Dropped Packets
+			MDE2_FPC_TMP.csv	:	Filtered Packets
+		+MODEM-F1
+			MDF1_RTC_TMP.csv	:	Router Counters
+			MDF1_DPT_TMP.csv	:	Dropped Packets
+			MDF1_FPC_TMP.csv	:	Filtered Packets
+		+MODEM-F2
+			MDF2_RTC_TMP.csv	:	Router Counters
+			MDF2_DPT_TMP.csv	:	Dropped Packets
+			MDF2_FPC_TMP.csv	:	Filtered Packets
+
+		*Router Counters File Format （改行無し　１行ｃｓｖ）	 MD**_RTC_TMP.csv
+			RCT[0]		:	From Ethernet - Total
+			RCT[1]		:	To Ethernet - Total
+			RCT[2]		:	To Ethernet - Unicast
+			RCT[3]		:	To Ethernet - Multicast
+			RCT[4]		:	To Ethernet - Broadcast
+			RCT[5]		:	From Satellite - Total
+			RCT[6]		:	To Satellite - Total
+			RCT[7]		:	To Satellite - Unicast
+			RCT[8]		:	To Satellite - Multicast
+			RCT[9]		:	To Satellite - Broadcast
+			RCT[10]		:	From Endstation - Total
+			RCT[11]		:	To Endstation - Total
+			RCT[12]		:	Received IGMP Packets
+			RCT[13]		:	Received IP Options Packets
+
+		*Dropped Packets File Format （改行無し　１行ｃｓｖ）	MD**_DPT_TMP.csv
+			DPT[0]		:	Bad IP Header Checksum
+			DPT[1]		:	Bad Buffer Length
+			DPT[2]		:	Bad IP Version
+			DPT[3]		:	TTL Expired
+			DPT[4]		:	No Route
+			DPT[5]		:	No ARP Entry
+			DPT[6]		:	Filtered Multicast
+			DPT[7]		:	Multicast Disable Group
+			DPT[8]		:	EasyConnect Multicast Outbound
+			DPT[9]		:	Router Queue Full
+			DPT[10]		:	Total Dropped
+
+		*Filtered Packets File Format （改行無し １行ｃｓｖ）	MD**_FPC_TMP.csv
+			FPC[0]		:	Boot
+			FPC[1]		:	Flow Desciptor
+			FPC[2]		:	Unknown Reason Code
+			FPC[3]		:	Flow Correlator
+			FPC[4]		:	Management Path
+			FPC[5]		:	WAN Scaling
+			FPC[6]		:	Ping
+			FPC[7]		:	Access Control
+			FPC[8]		:	Vipersat MCP
+			FPC[9]		:	Vipersat UCP
+			FPC[10]		:	Codeload
+			FPC[11]		:	Multicast
+			FPC[12]		:	Bad Packets
+			FPC[13]		:	Route
+			FPC[14]		:	Vipersat Remote
+			FPC[15]		:	QoS Rule
+			FPC[16]		:	Vipersat Loop
+			FPC[17]		:	Bad Header Length
+			FPC[18]		:	Bad Data Ptr
+			FPC[19]		:	MAC Split Error
+			FPC[20]		:	L3 Type Err
+			FPC[21]		:	Local Destination
+			FPC[22]		:	Redundancy Error
+			FPC[23]		:	ICMP Error
+			FPC[24]		:	Port Error
+			FPC[25]		:	Per Port Route Rule
+			FPC[26]		:	Total Filtered
+
+5.lqms_eth.py
+5.1.log Files
+	(1)System logs
+		+File name
+			/mnt/ssd/facl/sys_YYMMDD.log
+		+前述の比較対象の設定に関して全て記録する。
+			-動作ログ（lqms_ebn.py)が起動したときの記録
+				日付、時刻、MD番号、'ETH'、'Web Analysis'、'Ethernet Statistics'
+
+	(2)MODEM個別ログ （状態変化があったカウントのみを記録）
+		+各MODEMの個別ログ
+			/mnt/ssd/log/mda1/MDA1_YYMMDD.log , /mnt/ssd/log/mda2/MDA2_YYMMDD.log , /mnt/ssd/log/mdb1/MDB1_YYMMDD.log , 
+			/mnt/ssd/log/mdb2/MDB2_YYMMDD.log , /mnt/ssd/log/mdc1/MDC1_YYMMDD.log , /mnt/ssd/log/mdc2/MDC2_YYMMDD.log , 
+			/mnt/ssd/log/mde1/MDE1_YYMMDD.log , /mnt/ssd/log/mde2/MDE2_YYMMDD.log , /mnt/ssd/log/mdf1/MDF1_YYMMDD.log , 
+			/mnt/ssd/log/mdf2/MDF2_YYMMDD.log
+			-記録ログ：Router CounterのＷｅｂ解析結果の記録
+				日付、時刻、MD番号、'RTC'、項目、数値	ルータカウンタ
+				日付、時刻、MD番号、'DRP'、項目、数値	ドロップパケットカウント
+				日付、時刻、MD番号、'FIL'、項目、数値	フィルタパケットカウント
+	
+	(3)表示用・データ比較用ファイル
+		+MODEM-A1
+			MDA1_OBP_TMP.csv	:	Outbound Counts
+			MDA1_IBP_TMP.csv	:	Inbound Counts
+			MDA1_ERR_TMP.csv	:	Error Packets
+		+MODEM-A2
+			MDA2_OBP_TMP.csv	:	Outbound Counts
+			MDA2_IBP_TMP.csv	:	Inbound Counts
+			MDA2_ERR_TMP.csv	:	Error Packets
+		+MODEM-B1
+			MDB1_OBP_TMP.csv	:	Outbound Packets
+			MDB1_IBP_TMP.csv	:	Inbound Packets
+			MDB1_ERR_TMP.csv	:	Error Packets
+		+MODEM-B2
+			MDB2_OBP_TMP.csv	:	Outbound Packets
+			MDB2_IBP_TMP.csv	:	Inbound Packets
+			MDB2_ERR_TMP.csv	:	Error Packets
+		+MODEM-C1
+			MDC1_OBP_TMP.csv	:	Outbound Packets
+			MDC1_IBP_TMP.csv	:	Inbound Packets
+			MDC1_ERR_TMP.csv	:	Error Packets
+		+MODEM-C2
+			MDC2_OBP_TMP.csv	:	Outbound Packets
+			MDC2_IBP_TMP.csv	:	Inbound Packets
+			MDC2_ERR_TMP.csv	:	Error Packets
+		+MODEM-E1
+			MDE1_OBP_TMP.csv	:	Outbound Packets
+			MDE1_IBP_TMP.csv	:	Inbound Packets
+			MDE1_ERR_TMP.csv	:	Error Pckets
+		+MODEM-E2
+			MDE2_OBP_TMP.csv	:	Outbound Packets
+			MDE2_IBP_TMP.csv	:	Inbound Packets
+			MDE2_ERR_TMP.csv	:	Error Packets
+		+MODEM-F1
+			MDF1_OBP_TMP.csv	:	Outbound Packets
+			MDF1_IBP_TMP.csv	:	Inbound Packets
+			MDF1_ERR_TMP.csv	:	Error Packets
+		+MODEM-F2
+			MDF2_OBP_TMP.csv	:	Outbound Packets
+			MDF2_IBP_TMP.csv	:	Inbound Packets
+			MDF2_ERR_TMP.csv	:	Error Packets
+
+		*Outbound Packets File Format （改行無し　１行ｃｓｖ）	 MD**_OBP_TMP.csv
+			OBP_TOT_TRF		Total Packets Received 			@Traffic Input
+			OBP_UNI_TRF		Unicast Packets Received 		@Traffic Input
+			OBP_BRD_TRF		Broadcast Packets Received		@Traffic Input
+			OBP_MLT_TRF		Multicast Packets Received		@Traffic Input
+			OBP_TOT_WAN		Total Packets Transmitted		@WAN Output
+			OBP_UNI_WAN		Unicast Packets Transmitted		@WAN Output
+			OBP_BRD_WAN		Broadcast Packets Transmitted	@WAN Output
+			OBP_MLT_WAN		Multicast Packets Transmitted	@WAN Output
+			OBP_CDR_TRF		Current Datarate				@Traffic Port Input
+			OBP_AVG_TRF		Average Datarate				@Traffic Port Input
+			OBP_MAX_TRF		MAX Datarate					@Traffic Port Input
+			OBP_CDR_WAN		Current Datarate				@WAN Port Output
+			OBP_AVG_WAN		Average Datarate				@WAN Port Output
+			OBP_MAX_WAN		MAX Datarate					@WAN Port Output
+
+		*Inbound Packets File Format （改行無し　１行ｃｓｖ）	 MD**_IBP_TMP.csv
+			IBP_TOT_TRF		Total Packets Transmitted		@Traffic Output
+			IBP_UNI_TRF		Unicast Packets Transmitted		@Traffic Output
+			IBP_BRD_TRF		Broadcast Packets Transmitted	@Traffic Output
+			IBP_MLT_TRF		Multicast Packets Transmitted	@Traffic Output
+			IBP_TOT_WAN		Total Packets Received			@WAN Input
+			IBP_UNI_WAN		Unicast Packets Received		@WAN Input
+			IBP_BRD_WAN		Broadcast Packets Received		@WAN Input
+			IBP_MLT_WAN		Multicast Packets Received		@WAN Input
+			IBP_CDR_TRF		Current Datarate				@Traffic Port Output
+			IBP_AVG_TRF		Average Datarate				@Traffic Port Output
+			IBP_MAX_TRF		MAX Datarate					@Traffic Port Output
+			IBP_CDR_WAN		Current Datarate				@WAN Port Input
+			IBP_AVG_WAN		Average Datarate				@WAN Port Input
+			IBP_MAX_WAN		MAX Datarate					@WAN Port Input
+
+		*Error Details File Format (改行無し　１行ｃｓｖ		）MD**_ERR_TMP.csv
+			OBP_ER01_TRF	LAN FCS Error					@WAN Port Input
+			OBP_ER02_TRF	Alignment Error					@WAN Port Input
+			OBP_ER03_TRF	Undersize Error					@WAN Port Input
+			OBP_ER04_TRF	Flagments Error					@WAN Port Input
+			OBP_ER05_TRF	Jabber Error					@WAN Port Input
+			OBP_ER06_TRF	Oversize Error					@WAN Port Input
+			OBP_ER07_TRF	Indiscards Error				@WAN Port Input
+			OBP_ER08_WAN	Single Collision				@Traffic Port Output
+			OBP_ER09_WAN	Multiple Collision				@Traffic Port Output
+			OBP_ER10_WAN	Excessive Collision				@Traffic Port Output
+			IBP_ER01_WAN	LAN FCS Error					@Traffic Port Input
+			IBP_ER02_WAN	Alignment Error					@Traffic Port Input
+			IBP_ER03_WAN	Undersize Error					@Traffic Port Input
+			IBP_ER04_WAN	Flagments Error					@Traffic Port Input
+			IBP_ER05_WAN	Jabber Error					@Traffic Port Input
+			IBP_ER06_WAN	Oversize Erro					@Traffic Port Input
+			IBP_ER07_WAN	Indiscards Error				@Traffic Port Input
+			IBP_ER08_TRF	Single Collision				@WAN Port Output
+			IBP_ER09_TRF	Multiple Collision				@WAN Port Output
+			IBP_ER10_TRF	Excessive Collisio				@WAN Port Output
+
+6.lqms_ping.py
+6.1.log files
+	(1)System logs
+		+File name
+			/mnt/ssd/facl/sys_YYMMDD.log
+			-動作ログ（lqms_ping.py)が起動したときの記録
+				日付、時刻、MD番号、'PNG'、'MDs IP Port Check'
+
+	(2)Error logs
+		+File name
+			/mnt/ssd/error/err_YYMMDD.log
+			-動作ログ（lqms_ping.py)が起動したときの記録
+				日付、時刻、MD番号、'PNG'、'MDs IP Port Check'
+
+
